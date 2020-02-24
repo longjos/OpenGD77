@@ -190,6 +190,10 @@ static void handleEvent(uiEvent_t *ev)
 			{
 				// In analog mode. Stop transmitting immediately
 				GPIO_PinWrite(GPIO_LEDred, Pin_LEDred, 0);
+				if (nonVolatileSettings.txTone == true)
+				{
+				set_melody(melody_TXtone_beep);
+				}
 
 				// Need to wrap this in Task Critical to avoid bus contention on the I2C bus.
 				taskENTER_CRITICAL();
@@ -213,6 +217,10 @@ static void handleEvent(uiEvent_t *ev)
 			// In DMR mode, wait for the DMR system to finish before exiting
 			if (slot_state < DMR_STATE_TX_START_1)
 			{
+				if (nonVolatileSettings.txTone == true)
+				{
+				set_melody(melody_TXtone_beep);
+				}
 				GPIO_PinWrite(GPIO_LEDred, Pin_LEDred, 0);
 				menuSystemPopPreviousMenu();
 			}

@@ -170,6 +170,7 @@ void settingsRestoreDefaultSettings(void)
 	nonVolatileSettings.vfoBScanHigh=44000000;						//High Frequency limit for VFO B Scanning
 	nonVolatileSettings.contactDisplayPriority = CONTACT_DISPLAY_PRIO_CC_DB_TA;
 	nonVolatileSettings.splitContact = SPLIT_CONTACT_SINGLE_LINE_ONLY;
+	nonVolatileSettings.txTone = true;
 
 
 	currentChannelData = &settingsVFOChannel[nonVolatileSettings.currentVFONumber];// Set the current channel data to point to the VFO data since the default screen will be the VFO

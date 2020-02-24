@@ -79,6 +79,7 @@ typedef struct settingsStruct
 	uint32_t		vfoBScanHigh;                 //High frequency for VFO B Scanning
 	uint8_t			contactDisplayPriority;
 	uint8_t			splitContact;
+    bool			txTone;
 
 } settingsStruct_t;
 
