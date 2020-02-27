@@ -128,6 +128,13 @@ int menuTxScreen(uiEvent_t *ev, bool isFirstRun)
 			{
 				if (trxGetMode() == RADIO_MODE_DIGITAL)
 				{
+					if (slot_state == DMR_STATE_TX_START_5)
+					{
+						if (nonVolatileSettings.txTone == true)
+						{
+							set_melody(melody_TXtone_beep);
+						}
+					}
 					if ((ev->time - micm) > 100)
 					{
 						drawDMRMicLevelBarGraph();
@@ -192,7 +199,7 @@ static void handleEvent(uiEvent_t *ev)
 				GPIO_PinWrite(GPIO_LEDred, Pin_LEDred, 0);
 				if (nonVolatileSettings.txTone == true)
 				{
-				set_melody(melody_TXtone_beep);
+				set_melody(melody_RXtone_beep);
 				}
 
 				// Need to wrap this in Task Critical to avoid bus contention on the I2C bus.
@@ -219,7 +226,7 @@ static void handleEvent(uiEvent_t *ev)
 			{
 				if (nonVolatileSettings.txTone == true)
 				{
-				set_melody(melody_TXtone_beep);
+				set_melody(melody_RXtone_beep);
 				}
 				GPIO_PinWrite(GPIO_LEDred, Pin_LEDred, 0);
 				menuSystemPopPreviousMenu();
